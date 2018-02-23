@@ -13,7 +13,9 @@ Upload the migrations folder to your Craft 3 project at the same level as your t
 Run them under Utilities => Migrations to create a default set of fields, volumes, and plugins in your project.
 
 To revert them, use the command line and for each file run
-        ./craft migrate/down
+```
+./craft migrate/down
+```
 
 ## Customisation
 
