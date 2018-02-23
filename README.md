@@ -10,9 +10,12 @@ These files require Craft CMS 3.0.0-beta.23 or later.
 
 Upload the migrations folder to your Craft 3 project at the same level as your templates and plugins folders.
 
-Run them under Utilities => Migrations to create a default set of fields, volumes, and plugins in your project.
+Run them under Utilities => Migrations to create a default set of fields, volumes, and plugins in your project. Or you can run the following command:
+```
+./craft migrate/up
+```
 
-To revert them, use the command line and for each file run
+To revert them, use the following command for each file:
 ```
 ./craft migrate/down
 ```
