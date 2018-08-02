@@ -2,6 +2,8 @@
 
 Migration Files for a fresh install of Craft 3 to quickly create a new project
 
+![Logo](./icon.svg)
+
 ## Requirements
 
 These files require Craft CMS 3.0.0-beta.23 or later.
