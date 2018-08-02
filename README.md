@@ -2,7 +2,7 @@
 
 Migration Files for a fresh install of Craft 3 to quickly create a new project
 
-![Logo](./icon.svg =250x)
+<img src="./icon.svg" width="250px" alt="Logo" title="Logo">
 
 ## Requirements
 
