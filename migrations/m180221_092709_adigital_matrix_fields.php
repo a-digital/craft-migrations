@@ -21,7 +21,7 @@ class m180221_092709_adigital_matrix_fields extends Migration
 		/**
 		 * Group: Matrix
 		 */
-		
+
 		$matrixGroup = null;
 		$groups = Craft::$app->getFields()->getAllGroups();
 		foreach($groups as $group) {
@@ -29,27 +29,27 @@ class m180221_092709_adigital_matrix_fields extends Migration
 				$matrixGroup = $group;
 			}
 		}
-		
+
 		if (is_null($matrixGroup)) {
 			$matrixGroup = new \craft\models\FieldGroup();
 			$matrixGroup->name = "Matrix";
 			Craft::$app->getFields()->saveGroup($matrixGroup);
 		}
-		
+
 		$mainUploadsVolume = Craft::$app->volumes->getVolumeByHandle("mainUploads");
 		$mainUploadsFolderTree = Craft::$app->assets->getFolderTreeByVolumeIds([$mainUploadsVolume->id]);
 		$mainUploadsFolder = $mainUploadsFolderTree[0]->id;
 		$galleryVolume = Craft::$app->volumes->getVolumeByHandle("gallery");
 		$galleryFolderTree = Craft::$app->assets->getFolderTreeByVolumeIds([$galleryVolume->id]);
 		$galleryFolder = $galleryFolderTree[0]->id;
-				
+
 		/////////////////////////////////////////////
 		//////////////  MATRIX FIELDS  //////////////
 		/////////////////////////////////////////////
 		/**
 		 * Fields: Slider, Gallery Block, Content Block
 		 *
-		 * Blocks: 
+		 * Blocks:
 		 * 		Slider: Slides
 		 * 		Gallery Block: Images, Description
 		 * 		Content Block: Content, Text, Heading, Image, Video, Gallery, Quote
@@ -84,7 +84,7 @@ class m180221_092709_adigital_matrix_fields extends Migration
 		 * 		print_r($matrixField);
 		 * 		exit;
 		 */
-		
+
 		if (is_null(Craft::$app->getFields()->getFieldByHandle("slider"))) {
 			$homeBlock = new \craft\fields\Matrix([
 			    "groupId" => $matrixGroup->id,
@@ -142,7 +142,7 @@ class m180221_092709_adigital_matrix_fields extends Migration
 			]);
 			Craft::$app->getFields()->saveField($homeBlock);
 		}
-		
+
 		if (is_null(Craft::$app->getFields()->getFieldByHandle("galleryBlock"))) {
 			$galleryBlock = new \craft\fields\Matrix([
 			    "groupId" => $matrixGroup->id,
@@ -218,7 +218,7 @@ class m180221_092709_adigital_matrix_fields extends Migration
 			]);
 			Craft::$app->getFields()->saveField($galleryBlock);
 		}
-		
+
 		if (is_null(Craft::$app->getFields()->getFieldByHandle("contentBlock"))) {
 			$contentBlock = new \craft\fields\Matrix([
 			    "groupId" => $matrixGroup->id,
@@ -455,7 +455,7 @@ class m180221_092709_adigital_matrix_fields extends Migration
 			]);
 			Craft::$app->getFields()->saveField($contentBlock);
 		}
-	
+
 	    return true;
     }
 
@@ -476,14 +476,14 @@ class m180221_092709_adigital_matrix_fields extends Migration
         if (!is_null($contentBlock)) {
 	        Craft::$app->getFields()->deleteFieldById($contentBlock->id);
         }
-        
+
         $groups = Craft::$app->getFields()->getAllGroups();
 		foreach($groups as $group) {
 			if (count(Craft::$app->getFields()->getFieldsByGroupId($group->id)) == 0 && $group->name == "Matrix") {
 				Craft::$app->getFields()->deleteGroupById($group->id);
 			}
 		}
-        
+
         return true;
     }
 }
